@@ -35,23 +35,35 @@
     position: fixed;
     top: 0;
     width: 100%;
-    height: 70px;
+    height: 80px; /* Um pouco mais de altura para os ícones respirarem */
     display: flex;
-    justify-content: center; /* Centraliza os links no topo */
+    justify-content: space-between; /* Um bloco para cada lado */
     align-items: center;
-    padding: 0 5%;
-    
-    /* REMOVEMOS a cor sólida e a borda */
-    background: transparent; 
-    border-bottom: none; 
-    
+    padding: 0 8%; /* Ajusta a distância das bordas da tela */
+    background: rgba(10, 10, 15, 0.5); /* Leve transparência */
+    backdrop-filter: blur(10px);
     z-index: 9999;
-}   
+}  
 
+/* Garante que os links de texto não tenham as bolinhas da lista */
 .nav-links {
-    list-style: none;
     display: flex;
-    gap: 20px; /* Espaço entre os links */
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
 }
 
 
@@ -338,4 +350,25 @@ footer {
 .show-scroll {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ==========================================
+   10. ÍCONES DE REDES SOCIAIS (NAVBAR)
+   ========================================== */
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--text-main);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+    transform: translateY(-3px);
 }
