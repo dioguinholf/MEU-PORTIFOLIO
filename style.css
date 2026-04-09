@@ -32,18 +32,28 @@
 ===================== */
 
 .navbar {
-    display: flex;
+    position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px 50px;
+    height: 70px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centraliza os links no topo */
     align-items: center;
-    background: rgba(10, 10, 15, 0.8);
-    backdrop-filter: blur(10px); /* Efeito de vidro */
-    z-index: 1000;
-    border-bottom: 1 px solid rgba(0, 243, 255, 0.1);
+    padding: 0 5%;
+    
+    /* REMOVEMOS a cor sólida e a borda */
+    background: transparent; 
+    border-bottom: none; 
+    
+    z-index: 9999;
+}   
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Espaço entre os links */
 }
+
 
 .logo {
     font-family: var(--font-heading);
@@ -80,14 +90,12 @@
 .hero {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* Um fundo sutil imitando uma grade cibernética */
-    background-image: radial-gradient(circle at center, rgba(157, 0, 255, 0.1) 0%, transparent 50%),
-                      linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 40px 40px, 40px 40px;
+    background: #0a0a0f; /* Fundo sólido para não ter erro */
+    padding: 0 20px;
 }
 
 .hero-content {
@@ -97,22 +105,22 @@
 /* O texto em Neon */
 .neon-text {
     font-family: var(--font-heading);
-    font-size: 6rem;
-    font-weight: 700;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--neon-cyan);
-    text-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-    margin-bottom: 10px;
-    letter-spacing: 5px;
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    font-weight: 800;
+    color: #00f3ff; /* Ciano puro */
+    text-shadow: 0 0 20px #00f3ff, 0 0 40px rgba(0, 243, 255, 0.5);
     text-transform: uppercase;
+    letter-spacing: 10px;
+    margin: 20px 0;
+    display: block; /* Garante que ocupe o espaço */
 }
 
 .glitch-text {
+    color: #9d00ff; /* Roxo neon */
     font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--neon-purple);
+    font-size: 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 }
 
 .subtitle {
@@ -277,4 +285,57 @@
     font-size: 1rem;
     padding: 10px 20px;
     display: inline-block; /* Garante que o botão fique no tamanho certo */
+}
+
+/* ==========================================
+   8. SEÇÃO DE CONTATO E RODAPÉ
+   ========================================== */
+#contato {
+    text-align: center;
+    align-items: center;
+    min-height: 60vh; /* Seção um pouco menor que as outras */
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* Botão de contato um pouco maior e com mais brilho */
+.glow-btn {
+    padding: 20px 40px;
+    font-size: 1.3rem;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: rgba(10, 10, 15, 0.95);
+    border-top: 1px solid rgba(0, 243, 255, 0.1);
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+}
+
+/* ==========================================
+   9. ANIMAÇÕES DE SCROLL (REVEAL)
+   ========================================== */
+/* Estado inicial: Transparente e um pouco mais para baixo */
+.hidden-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+/* Estado final: Totalmente visível e no lugar original */
+.show-scroll {
+    opacity: 1;
+    transform: translateY(0);
 }
