@@ -172,3 +172,109 @@
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ==========================================
+   5. CONFIGURAÇÕES DE SEÇÕES GERAIS
+   ========================================== */
+.section {
+    padding: 100px 10%; /* Espaço extra para não bater no menu fixo */
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.highlight {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+/* ==========================================
+   6. SEÇÃO SOBRE MIM
+   ========================================== */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================
+   7. SEÇÃO DE PROJETOS (GRID E CARTÕES)
+   ========================================== */
+.projects-grid {
+    display: grid;
+    /* Troque o 1px por 1fr aqui: */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.project-card {
+    background: rgba(10, 10, 15, 0.6);
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* O efeito Holográfico/Neon ao passar o mouse */
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.15);
+}
+
+.project-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Estilo das "Etiquetas" de tecnologia */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tech-tags span {
+    font-size: 0.8rem;
+    color: var(--neon-purple);
+    background: rgba(157, 0, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(157, 0, 255, 0.3);
+}
+
+.btn-small {
+    font-size: 1rem;
+    padding: 10px 20px;
+    display: inline-block; /* Garante que o botão fique no tamanho certo */
+}
