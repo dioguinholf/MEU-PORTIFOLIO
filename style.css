@@ -106,7 +106,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: #0a0a0f; /* Fundo sólido para não ter erro */
+    background: transparent !important;
     padding: 0 20px;
 }
 
