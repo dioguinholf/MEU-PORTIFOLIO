@@ -23,43 +23,64 @@ canvas.height = window.innerHeight;
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  initColumns();
 });
 
-const particles = Array.from({ length: 80 }, () => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height,
-  vx: (Math.random() - 0.5) * 0.8,
-  vy: (Math.random() - 0.5) * 0.8,
-}));
+// Caracteres usados na chuva: katakana + números + símbolos de código
+const CHARS = 'アイウエオカキクケコサシスセソタチツテト0123456789<>{}[]/=+*#$&%01'.split('');
+
+const FONT_SIZE = 16;
+const COLOR_HEAD = '#e8ffff';   // cabeça do rastro, quase branca
+const COLOR_CYAN = '#00f3ff';   // corpo do rastro, ciano neon do site
+const COLOR_PURPLE = '#9d00ff'; // algumas colunas em roxo neon, pra variar
+
+let columns = [];
+
+function initColumns() {
+  const numColumns = Math.ceil(canvas.width / FONT_SIZE);
+  columns = Array.from({ length: numColumns }, (_, i) => ({
+    x: i * FONT_SIZE,
+    y: Math.random() * -canvas.height,
+    speed: 0.5 + Math.random() * 1.5,
+    color: Math.random() < 0.15 ? COLOR_PURPLE : COLOR_CYAN,
+  }));
+}
+initColumns();
 
 function animate() {
-  ctx.fillStyle = 'rgba(0,0,0,0.15)';
+  // Rastro semitransparente: em vez de limpar o frame inteiro, desenha um
+  // retângulo preto translúcido por cima, criando o efeito de "cauda" caindo
+  ctx.fillStyle = 'rgba(0,0,0,0.08)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {
-    p.x += p.vx; p.y += p.vy;
-    if (p.x<0||p.x>canvas.width) p.vx*=-1;
-    if (p.y<0||p.y>canvas.height) p.vy*=-1;
-  });
-  for (let i=0;i<particles.length;i++) {
-    for (let j=i+1;j<particles.length;j++) {
-      const dx=particles[i].x-particles[j].x;
-      const dy=particles[i].y-particles[j].y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<120){
-        ctx.strokeStyle=`rgba(0,200,255,${1-d/120})`;
-        ctx.lineWidth=0.5;
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x,particles[i].y);
-        ctx.lineTo(particles[j].x,particles[j].y);
-        ctx.stroke();
-      }
+
+  ctx.font = `${FONT_SIZE}px monospace`;
+  ctx.textAlign = 'center';
+
+  columns.forEach(col => {
+    const char = CHARS[Math.floor(Math.random() * CHARS.length)];
+
+    // Caractere na cabeça do rastro, mais brilhante
+    ctx.fillStyle = COLOR_HEAD;
+    ctx.shadowColor = col.color;
+    ctx.shadowBlur = 8;
+    ctx.fillText(char, col.x + FONT_SIZE / 2, col.y);
+
+    // Corpo do rastro na cor da coluna, sem brilho (mais leve)
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = col.color;
+    ctx.globalAlpha = 0.5;
+    ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], col.x + FONT_SIZE / 2, col.y - FONT_SIZE);
+    ctx.globalAlpha = 1;
+
+    col.y += col.speed * FONT_SIZE * 0.3;
+
+    // Quando sai da tela, volta pro topo com nova velocidade aleatória
+    if (col.y > canvas.height + FONT_SIZE) {
+      col.y = Math.random() * -200;
+      col.speed = 0.1 + Math.random() * 1.5;
     }
-    ctx.fillStyle='#00c8ff';
-    ctx.beginPath();
-    ctx.arc(particles[i].x,particles[i].y,2,0,Math.PI*2);
-    ctx.fill();
-  }
+  });
+
   requestAnimationFrame(animate);
 }
 animate();
-
