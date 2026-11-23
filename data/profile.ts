@@ -17,6 +17,9 @@ export const profile = {
     github: "https://github.com/dioguinholf",
     linkedin: "https://www.linkedin.com/in/diogolopesdev",
     email: "mailto:diogo.lopesf@ufrpe.br",
+    // Currículo em PDF: coloque o arquivo em public/curriculo.pdf e preencha com "/curriculo.pdf".
+    // Enquanto estiver vazio, o botão "Baixar currículo" não aparece.
+    cv: "",
   },
   about: [
     "Tenho experiência em Business Intelligence, com dashboards, relatórios e indicadores em Power BI e Excel para apoiar decisões da operação. Cursando Bacharelado em Sistemas de Informação na UFRPE, estou construindo minha base em desenvolvimento back-end com Node.js, Express e PostgreSQL, com projetos próprios publicados no GitHub.",

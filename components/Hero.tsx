@@ -1,5 +1,14 @@
 import type { ReactNode } from "react";
 import { profile } from "@/data/profile";
+import { asset } from "@/data/asset";
+import { DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from "./Icons";
+
+// Atalhos para quem quer falar com você ou ver seu código sem rolar a página
+const socials = [
+  { href: profile.links.github, label: "GitHub", icon: <GitHubIcon />, external: true },
+  { href: profile.links.linkedin, label: "LinkedIn", icon: <LinkedInIcon />, external: true },
+  { href: profile.links.email, label: "E-mail", icon: <MailIcon />, external: false },
+];
 
 // Linhas do "cartão de código" exibido no hero.
 const codeLines: { indent: number; content: ReactNode }[] = [
@@ -97,10 +106,31 @@ export default function Hero() {
             <a href="#projetos" className="btn btn-primary">
               Ver projetos
             </a>
-            <a href="#contato" className="btn btn-ghost">
-              Entrar em contato
-            </a>
+            {profile.links.cv ? (
+              <a href={asset(profile.links.cv)} className="btn btn-ghost" download>
+                <DownloadIcon /> Baixar currículo
+              </a>
+            ) : (
+              <a href="#contato" className="btn btn-ghost">
+                Entrar em contato
+              </a>
+            )}
           </div>
+
+          <ul className="hero-socials" aria-label="Redes e contato">
+            {socials.map((social) => (
+              <li key={social.label}>
+                <a
+                  href={social.href}
+                  aria-label={social.label}
+                  title={social.label}
+                  {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {social.icon}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <aside className="code-card" aria-label="Resumo do perfil em código">
