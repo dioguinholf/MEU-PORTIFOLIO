@@ -1,5 +1,7 @@
 import { profile } from "@/data/profile";
 import Reveal from "./Reveal";
+import CopyEmail from "./CopyEmail";
+import { GitHubIcon, LinkedInIcon } from "./Icons";
 
 export default function Contact() {
   const email = profile.links.email.replace("mailto:", "");
@@ -18,16 +20,19 @@ export default function Contact() {
             uma vaga, um projeto ou tecnologia, será um prazer.
           </p>
 
-          <a href={profile.links.email} className="contact-email">
-            {email}
-          </a>
+          <div className="contact-email-row">
+            <a href={profile.links.email} className="contact-email">
+              {email}
+            </a>
+            <CopyEmail email={email} />
+          </div>
 
           <div className="contact-links">
             <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn ↗
+              <LinkedInIcon size={18} /> LinkedIn
             </a>
             <a href={profile.links.github} target="_blank" rel="noopener noreferrer">
-              GitHub ↗
+              <GitHubIcon size={18} /> GitHub
             </a>
           </div>
         </Reveal>
