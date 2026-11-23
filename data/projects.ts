@@ -7,6 +7,7 @@ export type Project = {
   stack: string[];
   repoUrl?: string; // link do código no GitHub
   demoUrl?: string; // link da demonstração online, se existir
+  image?: string; // print do projeto, salvo em public/projects/
 };
 
 export const projects: Project[] = [
@@ -30,9 +31,11 @@ export const projects: Project[] = [
     slug: "app-clima",
     title: "App de Clima",
     summary:
-      "Previsão do tempo em tempo real com consumo de API REST e tema dinâmico em estilo glassmorphism.",
+      "Previsão do tempo consumindo a API do OpenWeather: clima atual, próximas horas e 5 dias, busca por localização, tratamento de erros e fundo animado conforme o clima.",
     stack: ["JavaScript", "API REST", "CSS"],
+    repoUrl: "https://github.com/dioguinholf/projeto-app-clima",
     demoUrl: "https://dioguinholf.github.io/projeto-app-clima/",
+    image: "/projects/app-clima.jpg",
   },
   {
     slug: "calculadora",
@@ -40,7 +43,9 @@ export const projects: Project[] = [
     summary:
       "Calculadora funcional com interface moderna, lógica matemática no front-end e tratamento de erros.",
     stack: ["JavaScript", "HTML", "CSS"],
+    repoUrl: "https://github.com/dioguinholf/calculadora-portifolio",
     demoUrl: "https://dioguinholf.github.io/calculadora-portifolio/",
+    image: "/projects/calculadora.jpg",
   },
 
   // PROJETOS PARA ADICIONAR (cole o link real do repositório e remova os comentários):
